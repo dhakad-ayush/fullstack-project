@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body style="background-color: #f8f9fa;">
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">PropertyCo Admin</a>
+            <div class="ms-auto">
+                <a class="btn btn-primary" href="index.html">
+                    <i class="bi bi-eye-fill me-1"></i> View Site
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="my-4 text-center">Admin Panel</h1>
+
+        <ul class="nav nav-tabs" id="adminTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="projects-tab" data-bs-toggle="tab" data-bs-target="#projects-tab-pane" type="button" role="tab">
+                    <i class="bi bi-kanban-fill me-1"></i> Projects
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="clients-tab" data-bs-toggle="tab" data-bs-target="#clients-tab-pane" type="button" role="tab">
+                    <i class="bi bi-people-fill me-1"></i> Clients
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="submissions-tab" data-bs-toggle="tab" data-bs-target="#submissions-tab-pane" type="button" role="tab">
+                    <i class="bi bi-inbox-fill me-1"></i> Submissions
+                </button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="adminTabContent">
+
+            <div class="tab-pane fade show active" id="projects-tab-pane" role="tabpanel">
+                <div class="row mt-4">
+                    <div class="col-lg-5">
+                        <div class="admin-card">
+                            <div class="admin-card-header"><h5>Add New Project</h5></div>
+                            <div class="admin-card-body">
+                                <form id="add-project-form">
+                                    <div class="mb-3">
+                                        <label for="projectName" class="form-label">Project Name</label>
+                                        <input type="text" class="form-control" id="projectName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="projectDescription" class="form-label">Project Description</label>
+                                        <textarea class="form-control" id="projectDescription" rows="3" required></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="projectImageFile" class="form-label">Project Image</label>
+                                        <input type="file" class="form-control" id="projectImageFile" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100">
+                                        <i class="bi bi-plus-circle-fill me-1"></i> Add Project
+                                    </button>
+                                </form>
+                                <div id="project-form-message" class="mt-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="admin-card">
+                            <div class="admin-card-header"><h5>Manage Projects</h5></div>
+                            <div class="admin-card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Image URL</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="projects-table-body">
+                                            </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="clients-tab-pane" role="tabpanel">
+                <div class="row mt-4">
+                    <div class="col-lg-5">
+                        <div class="admin-card">
+                            <div class="admin-card-header"><h5>Add New Client</h5></div>
+                            <div class="admin-card-body">
+                                <form id="add-client-form">
+                                    <div class="mb-3">
+                                        <label for="clientName" class="form-label">Client Name</label>
+                                        <input type="text" class="form-control" id="clientName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="clientDescription" class="form-label">Description (Testimonial)</label>
+                                        <textarea class="form-control" id="clientDescription" rows="3" required></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="clientDesignation" class="form-label">Client Designation</label>
+                                        <input type="text" class="form-control" id="clientDesignation" placeholder="e.g., CEO, Founwave" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="clientImageFile" class="form-label">Client Image</label>
+                                        <input type="file" class="form-control" id="clientImageFile" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100">
+                                        <i class="bi bi-person-plus-fill me-1"></i> Add Client
+                                    </button>
+                                </form>
+                                <div id="client-form-message" class="mt-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="admin-card">
+                            <div class="admin-card-header"><h5>Manage Clients</h5></div>
+                            <div class="admin-card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Designation</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="clients-table-body">
+                                            </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="submissions-tab-pane" role="tabpanel">
+                <div class="row mt-4">
+                    <div class="col-lg-7">
+                        <div class="admin-card">
+                            <div class="admin-card-header"><h5>Contact Form Submissions</h5></div>
+                            <div class="admin-card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Mobile</th>
+                                                <th>City</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="contacts-table-body">
+                                            </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="admin-card">
+                            <div class="admin-card-header"><h5>Newsletter Subscribers</h5></div>
+                            <div class="admin-card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Email Address</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="subscribers-table-body">
+                                            </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <footer class="footer mt-5">
+        <p>&copy; 2025 PropertyCo Admin Panel.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // --- DELETE FUNCTIONS (Global) ---
+        function deleteProject(id) {
+            if (confirm('Are you sure you want to delete this project?')) {
+                fetch('http://localhost:8080/api/projects/' + id, { method: 'DELETE' })
+                .then(() => { loadProjects(); })
+                .catch(error => console.error('Error deleting project:', error));
+            }
+        }
+        function deleteClient(id) {
+            if (confirm('Are you sure you want to delete this client?')) {
+                fetch('http://localhost:8080/api/clients/' + id, { method: 'DELETE' })
+                .then(() => { loadClients(); })
+                .catch(error => console.error('Error deleting client:', error));
+            }
+        }
+        function deleteContact(id) {
+            if (confirm('Are you sure you want to delete this contact?')) {
+                fetch('http://localhost:8080/api/contacts/' + id, { method: 'DELETE' })
+                .then(() => { loadContacts(); })
+                .catch(error => console.error('Error deleting contact:', error));
+            }
+        }
+        function deleteSubscriber(id) {
+            if (confirm('Are you sure you want to delete this subscriber?')) {
+                fetch('http://localhost:8080/api/subscribers/' + id, { method: 'DELETE' })
+                .then(() => { loadSubscribers(); })
+                .catch(error => console.error('Error deleting subscriber:', error));
+            }
+        }
+
+        // --- LOAD FUNCTIONS (Global) ---
+        function loadProjects() {
+            const projectsTableBody = document.getElementById('projects-table-body');
+            fetch('http://localhost:8080/api/projects')
+                .then(response => response.json())
+                .then(data => {
+                    projectsTableBody.innerHTML = '';
+                    data.forEach(project => {
+                        projectsTableBody.innerHTML += `
+                            <tr>
+                                <td>${project.name}</td>
+                                <td>${project.imageUrl}</td>
+                                <td>
+                                    <button class="btn btn-danger btn-sm" onclick="deleteProject('${project.id}')">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                })
+                .catch(error => console.error('Error loading projects:', error));
+        }
+
+        function loadClients() {
+            const clientsTableBody = document.getElementById('clients-table-body');
+            fetch('http://localhost:8080/api/clients')
+                .then(response => response.json())
+                .then(data => {
+                    clientsTableBody.innerHTML = '';
+                    data.forEach(client => {
+                        clientsTableBody.innerHTML += `
+                            <tr>
+                                <td>${client.name}</td>
+                                <td>${client.designation}</td>
+                                <td>
+                                    <button class="btn btn-danger btn-sm" onclick="deleteClient('${client.id}')">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                })
+                .catch(error => console.error('Error loading clients:', error));
+        }
+
+        function loadContacts() {
+            const contactsTableBody = document.getElementById('contacts-table-body');
+            fetch('http://localhost:8080/api/contacts')
+                .then(response => response.json())
+                .then(data => {
+                    contactsTableBody.innerHTML = '';
+                    data.forEach(contact => {
+                        contactsTableBody.innerHTML += `
+                            <tr>
+                                <td>${contact.fullName}</td>
+                                <td>${contact.email}</td>
+                                <td>${contact.mobileNumber}</td>
+                                <td>${contact.city}</td>
+                                <td>
+                                    <button class="btn btn-danger btn-sm" onclick="deleteContact('${contact.id}')">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                })
+                .catch(error => console.error('Error loading contacts:', error));
+        }
+
+        function loadSubscribers() {
+            const subscribersTableBody = document.getElementById('subscribers-table-body');
+            fetch('http://localhost:8080/api/subscribers')
+                .then(response => response.json())
+                .then(data => {
+                    subscribersTableBody.innerHTML = '';
+                    data.forEach(subscriber => {
+                        subscribersTableBody.innerHTML += `
+                            <tr>
+                                <td>${subscriber.email}</td>
+                                <td>
+                                    <button class="btn btn-danger btn-sm" onclick="deleteSubscriber('${subscriber.id}')">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                })
+                .catch(error => console.error('Error loading subscribers:', error));
+        }
+
+        // --- MAIN CODE (Runs on page load) ---
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- File Upload Function ---
+            async function uploadFile(file) {
+                const formData = new FormData();
+                formData.append('file', file);
+                try {
+                    const response = await fetch('http://localhost:8080/api/upload', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    if (!response.ok) { throw new Error('File upload failed'); }
+                    const data = await response.json();
+                    return data.filePath;
+                } catch (error) {
+                    console.error('Error uploading file:', error);
+                    return null;
+                }
+            }
+
+            // --- Add Project Form ---
+            const projectFormMessage = document.getElementById('project-form-message');
+            const addProjectForm = document.getElementById('add-project-form');
+            addProjectForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                projectFormMessage.innerHTML = '<div class="alert alert-info">Uploading file...</div>';
+                const fileInput = document.getElementById('projectImageFile');
+                if (fileInput.files.length === 0) {
+                    projectFormMessage.innerHTML = '<div class="alert alert-danger">Please select a file.</div>';
+                    return;
+                }
+                const imagePath = await uploadFile(fileInput.files[0]);
+                if (!imagePath) {
+                    projectFormMessage.innerHTML = '<div class="alert alert-danger">File upload failed.</div>';
+                    return;
+                }
+                const formData = {
+                    name: document.getElementById('projectName').value,
+                    description: document.getElementById('projectDescription').value,
+                    imageUrl: imagePath
+                };
+                fetch('http://localhost:8080/api/projects', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    projectFormMessage.innerHTML = '<div class="alert alert-success">Project added!</div>';
+                    addProjectForm.reset();
+                    loadProjects(); // Table refresh
+                })
+                .catch(error => {
+                    projectFormMessage.innerHTML = '<div class="alert alert-danger">Error adding project.</div>';
+                });
+            });
+
+            // --- Add Client Form ---
+            const clientFormMessage = document.getElementById('client-form-message');
+            const addClientForm = document.getElementById('add-client-form');
+            addClientForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                clientFormMessage.innerHTML = '<div class="alert alert-info">Uploading file...</div>';
+                const fileInput = document.getElementById('clientImageFile');
+                if (fileInput.files.length === 0) {
+                    clientFormMessage.innerHTML = '<div class="alert alert-danger">Please select a file.</div>';
+                    return;
+                }
+                const imagePath = await uploadFile(fileInput.files[0]);
+                if (!imagePath) {
+                    clientFormMessage.innerHTML = '<div class="alert alert-danger">File upload failed.</div>';
+                    return;
+                }
+                const formData = {
+                    name: document.getElementById('clientName').value,
+                    description: document.getElementById('clientDescription').value,
+                    designation: document.getElementById('clientDesignation').value,
+                    imageUrl: imagePath
+                };
+                fetch('http://localhost:8080/api/clients', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    clientFormMessage.innerHTML = '<div class="alert alert-success">Client added!</div>';
+                    addClientForm.reset();
+                    loadClients(); // Table refresh
+                })
+                .catch(error => {
+                    clientFormMessage.innerHTML = '<div class="alert alert-danger">Error adding client.</div>';
+                });
+            });
+
+            document.getElementById('projects-tab').addEventListener('click', loadProjects);
+            document.getElementById('clients-tab').addEventListener('click', loadClients);
+            document.getElementById('submissions-tab').addEventListener('click', () => {
+                loadContacts();
+                loadSubscribers();
+            });
+
+            
+            loadProjects();
+        });
+    </script>
+</body>
+</html>
